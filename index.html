@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Web Services — Professional Websites for Local Businesses</title>
+    <meta name="description" content="JK Web Services builds stunning, mobile-friendly websites for local businesses in Charlotte, NC. Get online fast — from $500.">
+    <meta property="og:title" content="JK Web Services — Professional Websites for Local Businesses">
+    <meta property="og:description" content="Get a professional website for your business. Fast, affordable, mobile-friendly. Starting at $500.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1240a8;
+            --accent: #f59e0b;
+            --dark: #111827;
+            --gray: #6b7280;
+            --light: #f9fafb;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--dark);
+            font-weight: 500; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta {
+            background: var(--primary); color: white !important;
+            padding: 0.5rem 1.25rem; border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: var(--primary-dark); }
+
+        .hamburger {
+            display: none; background: none; border: none;
+            font-size: 1.5rem; cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #1a56db 0%, #0f3490 100%);
+            color: white; text-align: center;
+            padding: 6rem 2rem 4rem;
+        }
+        .hero-content { max-width: 800px; }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800; margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p {
+            font-size: 1.25rem; opacity: 0.9;
+            margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;
+        }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-block; padding: 1rem 2rem;
+            border-radius: 10px; font-size: 1.1rem; font-weight: 600;
+            text-decoration: none; transition: all 0.3s;
+            cursor: pointer; border: none;
+        }
+        .btn-accent {
+            background: var(--accent); color: var(--dark);
+        }
+        .btn-accent:hover { background: #e08e0b; transform: translateY(-2px); }
+        .btn-outline {
+            background: transparent; color: white;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+        .btn-outline:hover { border-color: white; transform: translateY(-2px); }
+
+        /* SECTIONS */
+        section { padding: 5rem 2rem; }
+        .section-title {
+            text-align: center; margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;
+        }
+        .section-title p { color: var(--gray); font-size: 1.1rem; }
+
+        /* PROBLEM SECTION */
+        .problem { background: var(--light); }
+        .problem-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem; max-width: 1000px; margin: 0 auto;
+        }
+        .problem-card {
+            background: white; padding: 2rem; border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+        .problem-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .problem-card h3 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .problem-card p { color: var(--gray); font-size: 0.95rem; }
+
+        /* PORTFOLIO */
+        .portfolio { background: white; }
+        .portfolio-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; max-width: 1100px; margin: 0 auto;
+        }
+        .portfolio-card {
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none; color: inherit;
+            display: block;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .portfolio-preview {
+            height: 220px; display: flex;
+            align-items: center; justify-content: center;
+            font-size: 4rem; position: relative;
+        }
+        .portfolio-preview .overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+            color: white; font-size: 1rem; font-weight: 600;
+        }
+        .portfolio-card:hover .overlay { opacity: 1; }
+        .barber-bg { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+        .restaurant-bg { background: linear-gradient(135deg, #641e16, #922b21); }
+        .cleaning-bg { background: linear-gradient(135deg, #0e6655, #148f77); }
+        .portfolio-info { padding: 1.5rem; }
+        .portfolio-info h3 { font-size: 1.2rem; margin-bottom: 0.25rem; }
+        .portfolio-info p { color: var(--gray); font-size: 0.9rem; }
+        .portfolio-tag {
+            display: inline-block; margin-top: 0.5rem;
+            background: #e8f0fe; color: var(--primary);
+            padding: 0.2rem 0.75rem; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 600;
+        }
+
+        /* PRICING */
+        .pricing { background: var(--light); }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; max-width: 900px; margin: 0 auto;
+        }
+        .pricing-card {
+            background: white; padding: 2.5rem; border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            text-align: center; position: relative;
+        }
+        .pricing-card.featured {
+            border: 3px solid var(--primary);
+            transform: scale(1.05);
+        }
+        .pricing-badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--primary); color: white;
+            padding: 0.25rem 1rem; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 600;
+        }
+        .pricing-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .pricing-amount {
+            font-size: 3rem; font-weight: 800; color: var(--primary);
+            margin: 1rem 0;
+        }
+        .pricing-amount span { font-size: 1rem; color: var(--gray); font-weight: 400; }
+        .pricing-features {
+            list-style: none; text-align: left; margin: 1.5rem 0;
+        }
+        .pricing-features li {
+            padding: 0.5rem 0; color: var(--gray);
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .pricing-features li::before {
+            content: "✓ "; color: #10b981; font-weight: 700;
+        }
+        .pricing-card .btn {
+            width: 100%; margin-top: 1rem;
+        }
+
+        /* HOW IT WORKS */
+        .how-it-works { background: white; }
+        .steps {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem; max-width: 1000px; margin: 0 auto;
+            text-align: center;
+        }
+        .step { padding: 1.5rem; }
+        .step-number {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: var(--primary); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; font-weight: 800;
+            margin: 0 auto 1rem;
+        }
+        .step h3 { margin-bottom: 0.5rem; }
+        .step p { color: var(--gray); font-size: 0.95rem; }
+
+        /* TESTIMONIALS */
+        .testimonials { background: var(--light); }
+        .testimonial-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; max-width: 1000px; margin: 0 auto;
+        }
+        .testimonial-card {
+            background: white; padding: 2rem; border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .stars { color: var(--accent); font-size: 1.2rem; margin-bottom: 1rem; }
+        .testimonial-card p { font-style: italic; color: #374151; margin-bottom: 1rem; }
+        .testimonial-author { font-weight: 700; font-size: 0.9rem; }
+        .testimonial-biz { color: var(--gray); font-size: 0.85rem; }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, #1a56db, #0f3490);
+            color: white; text-align: center;
+            padding: 5rem 2rem;
+        }
+        .cta h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* CONTACT */
+        .contact { background: white; }
+        .contact-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem; max-width: 900px; margin: 0 auto;
+        }
+        .contact-info h3 { margin-bottom: 1rem; }
+        .contact-item {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 0.75rem 0;
+        }
+        .contact-item .icon { font-size: 1.5rem; }
+        .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-form input, .contact-form textarea, .contact-form select {
+            padding: 1rem; border: 2px solid #e5e7eb; border-radius: 10px;
+            font-size: 1rem; font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+            outline: none; border-color: var(--primary);
+        }
+        .contact-form textarea { resize: vertical; min-height: 100px; }
+        .contact-form .btn { background: var(--primary); color: white; }
+        .contact-form .btn:hover { background: var(--primary-dark); }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark); color: #9ca3af;
+            text-align: center; padding: 2rem;
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: white; padding: 1rem 2rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            .pricing-card.featured { transform: none; }
+            .hero h1 { font-size: 2rem; }
+        }
+
+        /* FADE IN */
+        .fade-in {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#" class="logo">JK <span>Web Services</span></a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+        <li><a href="#portfolio">Our Work</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#contact" class="nav-cta">Get Started</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Your Business Deserves a Website That <span>Actually Works</span></h1>
+        <p>We build professional, mobile-friendly websites for local businesses in Charlotte. No tech skills needed. No headaches. Just results.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn btn-accent">Get Your Free Quote →</a>
+            <a href="#portfolio" class="btn btn-outline">See Our Work</a>
+        </div>
+    </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+    <div class="section-title">
+        <h2>Still Running Your Business Without a Website?</h2>
+        <p>Here's what that's costing you</p>
+    </div>
+    <div class="problem-grid fade-in">
+        <div class="problem-card">
+            <div class="icon">👻</div>
+            <h3>You're Invisible</h3>
+            <p>97% of customers search online before choosing a local business. No website = they never find you.</p>
+        </div>
+        <div class="problem-card">
+            <div class="icon">🤝</div>
+            <h3>You're Losing Trust</h3>
+            <p>75% of people judge a business's credibility based on their website. No site? They call your competitor.</p>
+        </div>
+        <div class="problem-card">
+            <div class="icon">💸</div>
+            <h3>You're Leaving Money on the Table</h3>
+            <p>Every day without a website is another day customers can't find you, call you, or book you.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+    <div class="section-title">
+        <h2>Websites We've Built</h2>
+        <p>Real sites for real businesses — clean, fast, and mobile-friendly</p>
+    </div>
+    <div class="portfolio-grid fade-in">
+        <a href="demos/barber/index.html" class="portfolio-card">
+            <div class="portfolio-preview barber-bg">
+                💈
+                <div class="overlay">View Live Demo →</div>
+            </div>
+            <div class="portfolio-info">
+                <h3>Fresh Cuts Barbershop</h3>
+                <p>Modern barbershop site with online booking</p>
+                <span class="portfolio-tag">Barbershop</span>
+            </div>
+        </a>
+        <a href="demos/restaurant/index.html" class="portfolio-card">
+            <div class="portfolio-preview restaurant-bg">
+                🍕
+                <div class="overlay">View Live Demo →</div>
+            </div>
+            <div class="portfolio-info">
+                <h3>Bella's Italian Kitchen</h3>
+                <p>Restaurant site with menu and reservations</p>
+                <span class="portfolio-tag">Restaurant</span>
+            </div>
+        </a>
+        <a href="demos/cleaning/index.html" class="portfolio-card">
+            <div class="portfolio-preview cleaning-bg">
+                ✨
+                <div class="overlay">View Live Demo →</div>
+            </div>
+            <div class="portfolio-info">
+                <h3>Sparkle Clean Co.</h3>
+                <p>Cleaning service site with instant quotes</p>
+                <span class="portfolio-tag">Cleaning Service</span>
+            </div>
+        </a>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+    <div class="section-title">
+        <h2>How It Works</h2>
+        <p>Three simple steps to get your business online</p>
+    </div>
+    <div class="steps fade-in">
+        <div class="step">
+            <div class="step-number">1</div>
+            <h3>Tell Us About Your Business</h3>
+            <p>Quick 15-minute call. We learn what you do, who you serve, and what makes you different.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <h3>We Build Your Site</h3>
+            <p>We design and build your custom website in 3–5 days. You review it and request changes — free.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <h3>Go Live & Get Customers</h3>
+            <p>We launch your site, set up Google, and start sending customers your way. You focus on your work.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+    <div class="section-title">
+        <h2>Simple, Honest Pricing</h2>
+        <p>No hidden fees. No contracts. No surprises.</p>
+    </div>
+    <div class="pricing-grid fade-in">
+        <div class="pricing-card featured">
+            <div class="pricing-badge">MOST POPULAR</div>
+            <h3>Professional Website</h3>
+            <div class="pricing-amount">$500 <span>one-time</span></div>
+            <ul class="pricing-features">
+                <li>Custom design for your business</li>
+                <li>Mobile-friendly (looks great on phones)</li>
+                <li>Contact form & click-to-call</li>
+                <li>Google Maps integration</li>
+                <li>Fast loading speed</li>
+                <li>Ready in 3–5 business days</li>
+                <li>2 rounds of free revisions</li>
+            </ul>
+            <a href="#contact" class="btn btn-accent" id="btn-build">Get Started →</a>
+        </div>
+        <div class="pricing-card">
+            <h3>Monthly Maintenance</h3>
+            <div class="pricing-amount">$75 <span>/month</span></div>
+            <ul class="pricing-features">
+                <li>Hosting & domain management</li>
+                <li>Security updates & backups</li>
+                <li>Content updates (text, photos)</li>
+                <li>Monthly performance report</li>
+                <li>Email & phone support</li>
+                <li>Cancel anytime — no contracts</li>
+            </ul>
+            <a href="#contact" class="btn" style="background:var(--primary);color:white;" id="btn-maintain">Add Maintenance →</a>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <div class="section-title">
+        <h2>What Our Clients Say</h2>
+    </div>
+    <div class="testimonial-grid fade-in">
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"I'd been putting off getting a website for years because I thought it'd be expensive and complicated. JK Web Services made it easy — my site was up in 4 days and I've already gotten calls from it."</p>
+            <div class="testimonial-author">John K.</div>
+            <div class="testimonial-biz">Plumbing Company — Charlotte, NC</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"Best money I ever spent on my business. Professional site, fast turnaround, and they handle everything. I just had to answer a few questions and they did the rest."</p>
+            <div class="testimonial-author">Marcus T.</div>
+            <div class="testimonial-biz">Local Contractor — Charlotte, NC</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"My old website looked like it was from 2005. These guys rebuilt it and now I actually get compliments from customers. Worth every penny."</p>
+            <div class="testimonial-author">Lisa R.</div>
+            <div class="testimonial-biz">Salon Owner — Charlotte, NC</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Ready to Get Your Business Online?</h2>
+    <p>Every day without a website is a day your competitors are getting the customers that should be yours.</p>
+    <a href="#contact" class="btn btn-accent">Get Your Free Quote →</a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="section-title">
+        <h2>Let's Talk About Your Website</h2>
+        <p>Fill out the form or give us a call — we'll get back to you within 24 hours</p>
+    </div>
+    <div class="contact-grid">
+        <div class="contact-info">
+            <h3>Get in Touch</h3>
+            <div class="contact-item">
+                <span class="icon">📞</span>
+                <div>
+                    <strong>Call or Text</strong><br>
+                    <a href="tel:9802751150" style="color:var(--primary);text-decoration:none;">(980) 275-1150</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📧</span>
+                <div>
+                    <strong>Email</strong><br>
+                    <a href="mailto:Jkelly0005@gmail.com" style="color:var(--primary);text-decoration:none;">Jkelly0005@gmail.com</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📍</span>
+                <div>
+                    <strong>Serving</strong><br>
+                    Charlotte, NC &amp; Surrounding Areas
+                </div>
+            </div>
+            <div class="contact-item">
+                <span class="icon">⏰</span>
+                <div>
+                    <strong>Response Time</strong><br>
+                    Within 24 hours — usually much faster
+                </div>
+            </div>
+        </div>
+        <form class="contact-form" action="https://formsubmit.co/Jkelly0005@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Website Inquiry — JK Web Services">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="#">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="text" name="business" placeholder="Business Name">
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <input type="email" name="email" placeholder="Email Address">
+            <select name="business_type">
+                <option value="" disabled selected>What type of business?</option>
+                <option>Barber / Salon</option>
+                <option>Restaurant / Food</option>
+                <option>Cleaning Service</option>
+                <option>Contractor / Trades</option>
+                <option>Auto / Mechanic</option>
+                <option>Retail / Store</option>
+                <option>Health / Fitness</option>
+                <option>Other</option>
+            </select>
+            <textarea name="message" placeholder="Tell us a little about your business (optional)"></textarea>
+            <button type="submit" class="btn">Send My Request →</button>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 JK Web Services — Charlotte, NC | <a href="tel:9802751150">(980) 275-1150</a></p>
+    <p style="margin-top:0.5rem;font-size:0.85rem;">Professional websites for local businesses. Fast. Affordable. Done right.</p>
+</footer>
+
+<script>
+    // Fade-in animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(a.getAttribute('href'));
+            if(t) t.scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('.nav-links').classList.remove('open');
+        });
+    });
+</script>
+
+</body>
+</html>
