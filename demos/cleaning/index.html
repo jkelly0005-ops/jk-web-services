@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparkle Clean Co. — Professional Cleaning in Charlotte</title>
+    <meta name="description" content="Sparkle Clean Co. — Professional home and office cleaning in Charlotte, NC. Trusted, insured, and satisfaction guaranteed.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #0e6655;
+            --primary-light: #148f77;
+            --accent: #2ecc71;
+            --dark: #1a2332;
+            --gray: #6b7280;
+            --light: #f0faf5;
+            --white: #ffffff;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--dark); line-height: 1.6; }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
+            z-index: 100; padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta { background: var(--primary); color: white !important; padding: 0.5rem 1.25rem; border-radius: 8px; }
+        .nav-cta:hover { background: var(--primary-light); }
+        .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #0e6655 0%, #148f77 50%, #1abc9c 100%);
+            color: white; text-align: center; padding: 6rem 2rem;
+        }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; }
+        .hero h1 span { color: #a7f3d0; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .btn { display: inline-block; padding: 1rem 2rem; border-radius: 10px; font-size: 1.1rem; font-weight: 600; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; }
+        .btn-white { background: white; color: var(--primary); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); border-radius: 10px; }
+        .btn-outline:hover { border-color: white; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-light); }
+
+        section { padding: 5rem 2rem; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .section-title p { color: var(--gray); }
+
+        .services { background: var(--light); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .service-card { background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); text-align: center; transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-5px); }
+        .service-card .icon { font-size: 3rem; margin-bottom: 1rem; }
+        .service-card h3 { margin-bottom: 0.5rem; }
+        .service-card p { color: var(--gray); font-size: 0.95rem; margin-bottom: 1rem; }
+        .service-price { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+        .service-price span { font-size: 0.85rem; font-weight: 400; color: var(--gray); }
+
+        .trust { background: white; }
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; text-align: center; }
+        .trust-item .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .trust-item h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+        .trust-item p { color: var(--gray); font-size: 0.85rem; }
+
+        .quote-section { background: var(--light); }
+        .quote-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+        .quote-form input, .quote-form select, .quote-form textarea {
+            padding: 1rem; border: 2px solid #d1fae5; border-radius: 10px;
+            font-size: 1rem; font-family: inherit; transition: border-color 0.2s;
+        }
+        .quote-form input:focus, .quote-form select:focus, .quote-form textarea:focus { outline: none; border-color: var(--primary); }
+        .quote-form textarea { resize: vertical; min-height: 80px; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .reviews { background: white; }
+        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .review-card { background: var(--light); padding: 2rem; border-radius: 12px; }
+        .stars { color: #f59e0b; margin-bottom: 0.75rem; }
+        .review-card p { color: #374151; font-style: italic; margin-bottom: 1rem; }
+        .review-author { font-weight: 700; font-size: 0.9rem; }
+
+        .cta-section { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; text-align: center; }
+        .cta-section h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .cta-section p { opacity: 0.9; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+        footer { background: var(--dark); color: #9ca3af; text-align: center; padding: 2rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        .demo-banner { background: var(--accent); color: var(--dark); text-align: center; padding: 0.5rem; font-size: 0.85rem; font-weight: 600; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; }
+        .demo-banner a { color: var(--dark); text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: white; padding: 1rem 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+            .row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="logo">Sparkle <span>Clean</span> Co.</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#quote">Get a Quote</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="tel:7045554321" class="nav-cta">Call Now</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div>
+        <h1>A Cleaner Home. <span>A Happier You.</span></h1>
+        <p>Professional home & office cleaning in Charlotte. Trusted by 500+ families. Insured & satisfaction guaranteed.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="#quote" class="btn btn-white">Get Your Free Quote →</a>
+            <a href="tel:7045554321" class="btn btn-outline">Call (704) 555-4321</a>
+        </div>
+    </div>
+</section>
+
+<section class="services" id="services">
+    <div class="section-title">
+        <h2>Our Cleaning Services</h2>
+        <p>Whatever you need cleaned, we've got you covered</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="icon">🏠</div>
+            <h3>Standard Clean</h3>
+            <p>Full home clean — kitchens, bathrooms, bedrooms, living areas, floors, and dusting.</p>
+            <div class="service-price">From $120 <span>/ visit</span></div>
+        </div>
+        <div class="service-card">
+            <div class="icon">🌟</div>
+            <h3>Deep Clean</h3>
+            <p>Top-to-bottom intensive clean. Inside cabinets, baseboards, behind appliances — everything.</p>
+            <div class="service-price">From $250 <span>/ visit</span></div>
+        </div>
+        <div class="service-card">
+            <div class="icon">🏢</div>
+            <h3>Office Clean</h3>
+            <p>Keep your workspace spotless. Desks, restrooms, break rooms, floors, and windows.</p>
+            <div class="service-price">From $150 <span>/ visit</span></div>
+        </div>
+        <div class="service-card">
+            <div class="icon">📦</div>
+            <h3>Move In / Move Out</h3>
+            <p>Make your old place spotless or your new place move-in ready. Deep clean everything.</p>
+            <div class="service-price">From $300 <span>/ visit</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="trust">
+    <div class="trust-grid">
+        <div class="trust-item">
+            <div class="icon">✅</div>
+            <h3>Fully Insured</h3>
+            <p>Licensed, bonded, and insured for your peace of mind</p>
+        </div>
+        <div class="trust-item">
+            <div class="icon">💚</div>
+            <h3>Eco-Friendly</h3>
+            <p>We use safe, green cleaning products</p>
+        </div>
+        <div class="trust-item">
+            <div class="icon">🔒</div>
+            <h3>Background Checked</h3>
+            <p>Every team member is vetted and trusted</p>
+        </div>
+        <div class="trust-item">
+            <div class="icon">🤝</div>
+            <h3>Satisfaction Guaranteed</h3>
+            <p>Not happy? We'll re-clean for free</p>
+        </div>
+    </div>
+</section>
+
+<section class="quote-section" id="quote">
+    <div class="section-title">
+        <h2>Get Your Free Quote</h2>
+        <p>Tell us about your space and we'll send you a price in minutes</p>
+    </div>
+    <form class="quote-form" action="https://formsubmit.co/info@sparkleclean-demo.com" method="POST">
+        <input type="hidden" name="_subject" value="New Quote Request — Sparkle Clean Co.">
+        <input type="hidden" name="_captcha" value="false">
+        <div class="row">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+        </div>
+        <input type="email" name="email" placeholder="Email Address">
+        <div class="row">
+            <select name="service" required>
+                <option value="" disabled selected>Type of Clean</option>
+                <option>Standard Clean</option>
+                <option>Deep Clean</option>
+                <option>Office Clean</option>
+                <option>Move In / Move Out</option>
+            </select>
+            <select name="bedrooms">
+                <option value="" disabled selected>Bedrooms</option>
+                <option>1 Bedroom</option>
+                <option>2 Bedrooms</option>
+                <option>3 Bedrooms</option>
+                <option>4 Bedrooms</option>
+                <option>5+ Bedrooms</option>
+            </select>
+        </div>
+        <select name="frequency">
+            <option value="" disabled selected>How often?</option>
+            <option>One-time</option>
+            <option>Weekly</option>
+            <option>Bi-weekly</option>
+            <option>Monthly</option>
+        </select>
+        <textarea name="notes" placeholder="Anything else we should know? (pets, special requests, etc.)"></textarea>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Get My Free Quote →</button>
+    </form>
+</section>
+
+<section class="reviews" id="reviews">
+    <div class="section-title">
+        <h2>What Our Clients Say</h2>
+    </div>
+    <div class="review-grid">
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"My house has never looked this good. They're thorough, on time, and so friendly. I have them come every two weeks now and it's the best money I spend."</p>
+            <div class="review-author">Amanda S. — South Charlotte</div>
+        </div>
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"Used them for our move-out clean and got our full deposit back. They cleaned things I didn't even know were dirty. Highly recommend!"</p>
+            <div class="review-author">David P. — NoDa</div>
+        </div>
+        <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>"We use Sparkle Clean for our office and the difference is night and day. Professional, reliable, and our employees actually comment on how clean it is now."</p>
+            <div class="review-author">Jennifer M. — Uptown</div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <h2>Ready for a Sparkling Clean Space?</h2>
+    <p>Book today and get 15% off your first clean. No contracts, cancel anytime.</p>
+    <a href="#quote" class="btn btn-white">Get Your Free Quote →</a>
+</section>
+
+<footer>
+    <p>© 2026 Sparkle Clean Co. — Charlotte, NC | <a href="tel:7045554321">(704) 555-4321</a></p>
+</footer>
+
+<div class="demo-banner">
+    ⚡ This is a demo website built by <a href="../../index.html">JK Web Services</a> — <a href="../../index.html#contact">Get one like this for $500</a>
+</div>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if(t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
+</body>
+</html>
