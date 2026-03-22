@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Cuts Barbershop — Charlotte's Premier Barbershop</title>
+    <meta name="description" content="Fresh Cuts Barbershop in Charlotte, NC. Classic cuts, modern styles, hot towel shaves. Walk-ins welcome.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💈</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #1a1a2e;
+            --gold: #d4a843;
+            --gold-dark: #b8922e;
+            --light: #f5f0e8;
+            --white: #ffffff;
+        }
+        body { font-family: 'Georgia', serif; color: var(--primary); line-height: 1.6; }
+
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(26,26,46,0.97); z-index: 100;
+            padding: 1rem 2rem; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--gold); text-decoration: none; letter-spacing: 2px; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: #ccc; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--gold); }
+        .hamburger { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--gold); }
+
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white; text-align: center; padding: 6rem 2rem;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; letter-spacing: 3px; text-transform: uppercase; }
+        .hero h1 span { color: var(--gold); }
+        .hero p { font-size: 1.2rem; opacity: 0.8; margin-bottom: 2rem; font-style: italic; }
+        .btn { display: inline-block; padding: 1rem 2.5rem; border-radius: 0; font-size: 1rem; font-weight: 600; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; border: 2px solid var(--gold); }
+        .btn-gold { background: var(--gold); color: var(--primary); }
+        .btn-gold:hover { background: var(--gold-dark); }
+        .btn-outline { background: transparent; color: var(--gold); }
+        .btn-outline:hover { background: var(--gold); color: var(--primary); }
+
+        section { padding: 5rem 2rem; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .section-title .divider { width: 60px; height: 3px; background: var(--gold); margin: 1rem auto; }
+
+        .services { background: var(--light); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .service-card { background: white; padding: 2.5rem; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .service-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .service-card .price { font-size: 1.5rem; color: var(--gold); font-weight: 700; margin: 0.5rem 0; }
+        .service-card p { color: #666; font-size: 0.9rem; }
+
+        .about { background: white; max-width: 800px; margin: 0 auto; text-align: center; }
+        .about p { font-size: 1.1rem; color: #444; line-height: 1.8; }
+
+        .gallery { background: var(--primary); color: white; text-align: center; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; max-width: 1000px; margin: 0 auto; }
+        .gallery-item { height: 200px; background: #2a2a4e; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+
+        .hours { background: var(--light); }
+        .hours-grid { max-width: 500px; margin: 0 auto; }
+        .hours-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid #ddd; }
+        .hours-row .day { font-weight: 700; }
+
+        .cta-section { background: linear-gradient(135deg, #1a1a2e, #0f3460); color: white; text-align: center; padding: 5rem 2rem; }
+        .cta-section h2 { font-size: 2rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px; }
+        .cta-section p { font-size: 1.1rem; opacity: 0.8; margin-bottom: 2rem; }
+
+        footer { background: #0d0d1a; color: #666; text-align: center; padding: 2rem; font-size: 0.9rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        .demo-banner { background: var(--gold); color: var(--primary); text-align: center; padding: 0.5rem; font-size: 0.85rem; font-weight: 600; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; }
+        .demo-banner a { color: var(--primary); text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary); padding: 1rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="logo">Fresh Cuts</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#hours">Hours</a></li>
+        <li><a href="tel:7045551234" style="color:var(--gold);">Book Now</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div>
+        <h1>Fresh <span>Cuts</span></h1>
+        <p>Charlotte's Premier Barbershop — Classic Cuts, Modern Style</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a href="tel:7045551234" class="btn btn-gold">Book Appointment</a>
+            <a href="#services" class="btn btn-outline">Our Services</a>
+        </div>
+    </div>
+</section>
+
+<section class="services" id="services">
+    <div class="section-title">
+        <h2>Our Services</h2>
+        <div class="divider"></div>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="icon">✂️</div>
+            <h3>Classic Cut</h3>
+            <div class="price">$25</div>
+            <p>Precision haircut with hot towel finish and styling</p>
+        </div>
+        <div class="service-card">
+            <div class="icon">🪒</div>
+            <h3>Hot Towel Shave</h3>
+            <div class="price">$30</div>
+            <p>Straight razor shave with hot towels and aftershave</p>
+        </div>
+        <div class="service-card">
+            <div class="icon">👑</div>
+            <h3>The Royal</h3>
+            <div class="price">$45</div>
+            <p>Full cut, shave, facial massage, and hot towel treatment</p>
+        </div>
+        <div class="service-card">
+            <div class="icon">🧔</div>
+            <h3>Beard Trim</h3>
+            <div class="price">$15</div>
+            <p>Shape up and line your beard to perfection</p>
+        </div>
+    </div>
+</section>
+
+<section class="about">
+    <div class="section-title">
+        <h2>About Us</h2>
+        <div class="divider"></div>
+    </div>
+    <p>Fresh Cuts has been serving Charlotte since 2015. We believe every man deserves to look and feel his best. Our experienced barbers combine classic techniques with modern trends to give you the perfect cut, every time. Walk-ins welcome — appointments preferred.</p>
+</section>
+
+<section class="gallery" id="gallery">
+    <div class="section-title">
+        <h2 style="color:white;">Our Work</h2>
+        <div class="divider"></div>
+    </div>
+    <div class="gallery-grid">
+        <div class="gallery-item">💈</div>
+        <div class="gallery-item">✂️</div>
+        <div class="gallery-item">🪒</div>
+        <div class="gallery-item">👔</div>
+    </div>
+</section>
+
+<section class="hours" id="hours">
+    <div class="section-title">
+        <h2>Hours & Location</h2>
+        <div class="divider"></div>
+    </div>
+    <div class="hours-grid">
+        <div class="hours-row"><span class="day">Monday – Friday</span><span>9:00 AM – 7:00 PM</span></div>
+        <div class="hours-row"><span class="day">Saturday</span><span>8:00 AM – 5:00 PM</span></div>
+        <div class="hours-row"><span class="day">Sunday</span><span>Closed</span></div>
+    </div>
+    <p style="text-align:center;margin-top:2rem;color:#666;">📍 1234 Trade Street, Charlotte, NC 28202</p>
+</section>
+
+<section class="cta-section">
+    <h2>Ready for a Fresh Cut?</h2>
+    <p>Walk-ins welcome. Appointments preferred.</p>
+    <a href="tel:7045551234" class="btn btn-gold">Call (704) 555-1234</a>
+</section>
+
+<footer>
+    <p>© 2026 Fresh Cuts Barbershop — Charlotte, NC</p>
+</footer>
+
+<div class="demo-banner">
+    ⚡ This is a demo website built by <a href="../../index.html">JK Web Services</a> — <a href="../../index.html#contact">Get one like this for $500</a>
+</div>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if(t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
+</body>
+</html>
